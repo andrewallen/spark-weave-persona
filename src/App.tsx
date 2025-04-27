@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ParticleGrid from "./components/ParticleGrid";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import NavMenu from "./components/NavMenu";
 
 const queryClient = new QueryClient();
 
@@ -21,6 +22,7 @@ const App = () => (
           <Toaster />
           <Sonner />
           <BrowserRouter>
+            <NavMenu />
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="*" element={<NotFound />} />
