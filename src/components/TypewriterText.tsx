@@ -61,8 +61,11 @@ export const TypewriterText = () => {
       textShadow: '0 0 5px rgba(79, 255, 192, 0.5)'
     }}>
       {text}
-      <TextCursor 
-        className={`inline h-8 w-8 text-[#4FFFC0] ${showCursor ? 'opacity-100' : 'opacity-0'} transition-opacity duration-100`}
+      <span 
+        className={`inline-block w-1 h-8 bg-[#4FFFC0] ${showCursor ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`}
+        style={{
+          boxShadow: '0 0 3px rgba(79, 255, 192, 0.7)'
+        }}
       />
     </h2>
   );
