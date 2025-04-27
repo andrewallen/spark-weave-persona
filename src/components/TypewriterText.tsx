@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 
 const titles = [
@@ -18,6 +17,14 @@ export const TypewriterText = () => {
   const [isTyping, setIsTyping] = useState(true);
   const [showCursor, setShowCursor] = useState(true);
   const [glitchText, setGlitchText] = useState(false);
+  const [isBooting, setIsBooting] = useState(true);
+
+  useEffect(() => {
+    const bootTimeout = setTimeout(() => {
+      setIsBooting(false);
+    }, 2500);
+    return () => clearTimeout(bootTimeout);
+  }, []);
 
   useEffect(() => {
     const currentTitle = titles[titleIndex];
@@ -63,26 +70,28 @@ export const TypewriterText = () => {
   return (
     <>
       <div className="screen-overlay" />
-      <h2 
-        className={`text-4xl font-mono text-[#33FF33] mb-4 opacity-90 flex items-center gap-1 font-jetbrains text-glow ${
-          glitchText ? 'animate-[glitch_0.05s_ease]' : ''
-        }`}
-        style={{
-          minHeight: '1.5em',
-          lineHeight: '1.2',
-          filter: glitchText ? 'blur(0.5px)' : 'none',
-        }}
-      >
-        {text}
-        <span 
-          className={`inline-block w-1 h-8 bg-[#33FF33] ${
-            showCursor ? 'opacity-100' : 'opacity-0'
-          } transition-opacity duration-300`}
-          style={{
-            boxShadow: '0 0 4px #33FF33, 0 0 8px #33FF33'
-          }}
-        />
-      </h2>
+      <div className="monitor-frame">
+        <div className={`monitor-content ${isBooting ? 'booting' : ''}`}>
+          <div className="scan-flicker" />
+          <h2 
+            className={`text-4xl font-mono text-[#33FF33] mb-4 opacity-90 flex items-center gap-1 font-jetbrains text-glow typing-text ${
+              glitchText ? 'glitch' : ''
+            }`}
+            style={{
+              minHeight: '1.5em',
+              lineHeight: '1.2',
+              filter: glitchText ? 'blur(0.5px)' : 'none',
+            }}
+          >
+            {isBooting ? '>' : text}
+            <span 
+              className={`inline-block w-1 h-8 bg-[#33FF33] ${
+                showCursor ? 'opacity-100' : 'opacity-0'
+              } transition-opacity duration-300 cursor-glow`}
+            />
+          </h2>
+        </div>
+      </div>
     </>
   );
 };
