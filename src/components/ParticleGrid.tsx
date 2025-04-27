@@ -30,10 +30,9 @@ const ParticleGrid = () => {
     if (!ctx) return;
 
     const resizeCanvas = () => {
-      const { innerWidth, innerHeight } = window;
-      canvas.width = innerWidth;
-      canvas.height = innerHeight;
-      canvasSizeRef.current = { width: innerWidth, height: innerHeight };
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      canvasSizeRef.current = { width: window.innerWidth, height: window.innerHeight };
       initParticles();
     };
 
@@ -135,8 +134,15 @@ const ParticleGrid = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="absolute inset-0 -z-10"
-      style={{ position: 'absolute', top: 0, left: 0 }}
+      className="fixed inset-0 w-full h-full -z-50"
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100vw',
+        height: '100vh',
+        pointerEvents: 'none'
+      }}
     />
   );
 };
