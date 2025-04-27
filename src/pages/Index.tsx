@@ -58,7 +58,7 @@ const Index = () => {
       <section id="home" className="min-h-screen flex items-center relative scanlines">
         <div className="container mx-auto px-6 pt-32">
           <div className="max-w-3xl">
-            <p className="text-mint mb-4 animate-fade-in">Hi there! I'm</p>
+            
             <h1 className="text-gradient mb-4 animate-slide-down">Andrew Allen</h1>
             <TypewriterText />
             <p className="text-xl mb-8 max-w-xl animate-slide-down" style={{
