@@ -1,10 +1,9 @@
-
 import React, { useState, useEffect } from 'react';
 import { TextCursor } from 'lucide-react';
 
 const titles = [
   "Creative Developer",
-  "Digital Innovator",
+  "Digital Innovator", 
   "Tech Strategist",
   "Problem Solver",
   "UX Engineer",
@@ -58,7 +57,9 @@ export const TypewriterText = () => {
   return (
     <h2 className="text-4xl font-mono text-[#4FFFC0] mb-6 animate-slide-down opacity-75 flex items-center gap-1 font-jetbrains" style={{
       animationDelay: '100ms',
-      textShadow: '0 0 5px rgba(79, 255, 192, 0.5)'
+      textShadow: '0 0 5px rgba(79, 255, 192, 0.5)',
+      minHeight: '2.5em',
+      lineHeight: '1'
     }}>
       {text}
       <span 
