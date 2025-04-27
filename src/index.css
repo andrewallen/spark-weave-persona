@@ -13,7 +13,7 @@
     --popover: 222 47% 6%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 120 100% 60%;
+    --primary: 164 100% 65%;
     --primary-foreground: 222 47% 6%;
 
     --secondary: 217 32% 17%;
@@ -30,7 +30,7 @@
 
     --border: 217 32% 17%;
     --input: 217 32% 17%;
-    --ring: 120 100% 60%;
+    --ring: 164 100% 65%;
 
     --radius: 0.5rem;
   }
@@ -46,28 +46,14 @@
   }
 
   body {
-    @apply bg-navy text-lightSlate;
+    @apply bg-navy text-lightSlate cursor-none;
     font-feature-settings: "rlig" 1, "calt" 1;
     font-family: 'Space Mono', monospace;
-    position: relative;
-    overflow-x: hidden;
-  }
-  
-  body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle at center, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 100%);
-    pointer-events: none;
-    z-index: 10;
   }
   
   h1, h2, h3, h4, h5, h6 {
-    @apply text-primary font-bold tracking-tighter font-jetbrains;
-    text-shadow: 0 0 8px rgba(51, 255, 51, 0.7), 0 0 12px rgba(51, 255, 51, 0.3);
+    @apply text-mint font-bold tracking-tighter font-jetbrains;
+    text-shadow: 0 0 5px rgba(79, 255, 192, 0.5);
   }
   
   h1 {
@@ -81,14 +67,6 @@
   p {
     @apply text-slate;
   }
-
-  img {
-    filter: sepia(20%) hue-rotate(60deg) brightness(90%);
-  }
-  
-  a, button, input, select, textarea, [role="button"], .interactive {
-    @apply cursor-none;
-  }
 }
 
 @layer components {
@@ -96,15 +74,15 @@
     @apply text-2xl md:text-3xl font-bold mb-6 relative inline-block;
     &:after {
       content: "";
-      @apply absolute -bottom-2 left-0 w-1/2 h-1 bg-primary;
+      @apply absolute -bottom-2 left-0 w-1/2 h-1 bg-mint;
     }
   }
   
   .nav-item {
-    @apply relative overflow-hidden px-4 py-2 text-lightSlate hover:text-primary transition-all duration-300;
+    @apply relative overflow-hidden px-4 py-2 text-lightSlate hover:text-mint transition-all duration-300;
     &:after {
       content: "";
-      @apply absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300;
+      @apply absolute bottom-0 left-0 w-0 h-0.5 bg-mint transition-all duration-300;
     }
     &:hover:after {
       @apply w-full;
@@ -112,19 +90,18 @@
   }
   
   .grid-bg {
-    background-image: radial-gradient(circle at 1px 1px, rgba(51, 255, 51, 0.15) 1px, transparent 0);
+    background-image: radial-gradient(circle at 1px 1px, rgba(79, 255, 192, 0.15) 1px, transparent 0);
     background-size: 40px 40px;
   }
   
   .text-gradient {
-    @apply bg-gradient-to-r from-primary to-primary text-transparent bg-clip-text;
-    text-shadow: 0 0 10px rgba(51, 255, 51, 0.5), 0 0 20px rgba(51, 255, 51, 0.2);
+    @apply bg-gradient-to-r from-mint to-mint text-transparent bg-clip-text;
+    text-shadow: 0 0 10px rgba(79, 255, 192, 0.3);
   }
   
   .crt {
     @apply overflow-hidden;
-    animation: flicker 0.15s infinite, turn-on 2.5s ease-out forwards;
-    transform: perspective(800px) rotateX(2deg);
+    animation: flicker 0.15s infinite;
   }
   
   .scanlines {
@@ -141,100 +118,11 @@
     background: repeating-linear-gradient(
       to bottom,
       transparent 0%,
-      rgba(51, 255, 51, 0.05) 0.5%,
+      rgba(79, 255, 192, 0.03) 0.5%,
       transparent 1%
     );
     pointer-events: none;
     animation: scanline-move 8s linear infinite;
-  }
-
-  .screen-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 20, 0, 0.1);
-    mix-blend-mode: overlay;
-    pointer-events: none;
-    z-index: 999;
-  }
-  
-  .screen-noise {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
-    background-repeat: repeat;
-    opacity: 0.3;
-    mix-blend-mode: overlay;
-    pointer-events: none;
-    z-index: 1000;
-    animation: noise 0.2s infinite alternate;
-  }
-
-  .glitch {
-    position: relative;
-    &:before, &:after {
-      content: attr(data-text);
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      opacity: 0.8;
-    }
-    &:before {
-      animation: glitch-effect 3s infinite;
-      color: #33FF33;
-      z-index: -1;
-    }
-    &:after {
-      animation: glitch-effect 2s infinite reverse;
-      color: #33FF33;
-      z-index: -2;
-    }
-  }
-
-  .chromatic-aberration {
-    position: relative;
-    &:before, &:after {
-      content: attr(data-text);
-      position: absolute;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      opacity: 0.8;
-      z-index: -1;
-      pointer-events: none;
-    }
-    &:before {
-      left: -1px;
-      color: rgba(255, 0, 0, 0.5);
-    }
-    &:after {
-      left: 1px;
-      color: rgba(0, 0, 255, 0.5);
-      mix-blend-mode: screen;
-    }
-  }
-
-  .burn-in {
-    position: relative;
-    &::after {
-      content: attr(data-text);
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      opacity: 0.3;
-      filter: blur(1.5px);
-      z-index: -1;
-      pointer-events: none;
-    }
   }
 }
 
@@ -245,21 +133,6 @@
   
   .blend-difference {
     mix-blend-mode: difference;
-  }
-  
-  .text-shadow-glow {
-    text-shadow: 
-      0 0 2px rgba(51, 255, 51, 0.9),
-      0 0 4px rgba(51, 255, 51, 0.6),
-      0 0 8px rgba(51, 255, 51, 0.3);
-  }
-
-  .text-shadow-glow-lg {
-    text-shadow:
-      0 0 4px rgba(51, 255, 51, 0.95),
-      0 0 8px rgba(51, 255, 51, 0.7),
-      0 0 16px rgba(51, 255, 51, 0.5),
-      0 0 24px rgba(51, 255, 51, 0.2);
   }
 }
 
@@ -296,117 +169,29 @@
   }
 }
 
-@keyframes glitch-effect {
-  0% {
-    transform: translate(0);
-  }
-  20% {
-    transform: translate(-1px, 1px);
-  }
-  40% {
-    transform: translate(-1px, -1px);
-  }
-  60% {
-    transform: translate(1px, 1px);
-  }
-  80% {
-    transform: translate(1px, -1px);
-  }
-  100% {
-    transform: translate(0);
-  }
-}
-
-@keyframes horizontal-sync {
-  0% {
-    transform: translateX(0);
-  }
-  5% {
-    transform: translateX(5px);
-  }
-  10% {
-    transform: translateX(-5px);
-  }
-  15% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(0);
-  }
-}
-
-@keyframes noise {
-  0% {
-    background-position: 0 0;
-  }
-  100% {
-    background-position: 10% 10%;
-  }
-}
-
-@keyframes text-jitter {
-  0% {
-    transform: translateX(0);
-  }
-  25% {
-    transform: translateX(0.5px);
-  }
-  50% {
-    transform: translateX(-0.5px);
-  }
-  75% {
-    transform: translateX(0.5px);
-  }
-  100% {
-    transform: translateX(0);
-  }
-}
-
-@keyframes turn-on {
-  0% {
-    transform: perspective(800px) rotateX(90deg) scale(1.2);
-    filter: brightness(0.2);
-  }
-  40% {
-    transform: perspective(800px) rotateX(5deg) scale(1.0);
-    filter: brightness(0.8) saturate(1.2);
-  }
-  60% {
-    transform: perspective(800px) rotateX(3deg) scale(1.0);
-    filter: brightness(0.9) saturate(1.1);
-  }
-  100% {
-    transform: perspective(800px) rotateX(2deg) scale(1.0);
-    filter: brightness(1) saturate(1);
-  }
-}
-
+/* Custom cursor styles */
 .cursor-outer {
   width: 40px;
   height: 40px;
-  border: 1px solid rgba(51, 255, 51, 0.6);
+  border: 1px solid rgba(79, 255, 192, 0.5);
   border-radius: 50%;
   position: fixed;
   pointer-events: none;
   z-index: 9999;
   transform: translate(-50%, -50%);
   transition: width 0.3s ease-out, height 0.3s ease-out, border-color 0.3s ease-out;
-  box-shadow: 0 0 5px rgba(51, 255, 51, 0.3);
-  will-change: transform, opacity;
 }
 
 .cursor-inner {
   width: 8px;
   height: 8px;
-  background-color: #33FF33;
+  background-color: #4FFFC0;
   border-radius: 50%;
   position: fixed;
   pointer-events: none;
   z-index: 9999;
   transform: translate(-50%, -50%);
   transition: width 0.3s ease-out, height 0.3s ease-out, background-color 0.3s ease-out;
-  box-shadow: 0 0 5px rgba(51, 255, 51, 0.7);
-  will-change: transform, opacity;
 }
 
 .link-hover .cursor-outer {
@@ -419,14 +204,4 @@
   width: 12px;
   height: 12px;
   background-color: #FF6B5C;
-}
-
-html, body {
-  cursor: none !important;
-}
-
-a, button, input, select, textarea, [role="button"], .interactive {
-  cursor: none !important;
-  z-index: 100;
-  position: relative;
 }

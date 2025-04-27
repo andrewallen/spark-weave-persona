@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
+import { TextCursor } from 'lucide-react';
 
 const titles = [
   "Creative Developer",
@@ -17,7 +18,6 @@ export const TypewriterText = () => {
   const [titleIndex, setTitleIndex] = useState(0);
   const [isTyping, setIsTyping] = useState(true);
   const [showCursor, setShowCursor] = useState(true);
-  const [syncIssue, setSyncIssue] = useState(false);
 
   useEffect(() => {
     const currentTitle = titles[titleIndex];
@@ -26,11 +26,6 @@ export const TypewriterText = () => {
       if (text.length < currentTitle.length) {
         const timeout = setTimeout(() => {
           setText(currentTitle.slice(0, text.length + 1));
-          // Random sync issue effect (rarely)
-          if (Math.random() < 0.01) {
-            setSyncIssue(true);
-            setTimeout(() => setSyncIssue(false), 100);
-          }
         }, 100);
         return () => clearTimeout(timeout);
       } else {
@@ -61,22 +56,17 @@ export const TypewriterText = () => {
   }, []);
 
   return (
-    <h2 
-      className={`text-3xl md:text-4xl font-mono text-[#33FF33] mb-3 animate-slide-down opacity-75 flex items-center gap-1 font-jetbrains ${syncIssue ? 'animate-[horizontal-sync_0.5s_ease]' : ''}`} 
-      style={{
-        animationDelay: '100ms',
-        textShadow: '0 0 5px rgba(51, 255, 51, 0.5), 0 0 10px rgba(51, 255, 51, 0.2)',
-        minHeight: '1.3em',
-        lineHeight: '1.1',
-        animation: syncIssue ? 'horizontal-sync 0.5s ease' : 'text-jitter 0.5s infinite'
-      }}
-      data-text={text}
-    >
+    <h2 className="text-4xl font-mono text-[#4FFFC0] mb-4 animate-slide-down opacity-75 flex items-center gap-1 font-jetbrains" style={{
+      animationDelay: '100ms',
+      textShadow: '0 0 5px rgba(79, 255, 192, 0.5)',
+      minHeight: '1.5em',
+      lineHeight: '1.2'
+    }}>
       {text}
       <span 
-        className={`inline-block w-1 h-7 bg-[#33FF33] ${showCursor ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`}
+        className={`inline-block w-1 h-8 bg-[#4FFFC0] ${showCursor ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`}
         style={{
-          boxShadow: '0 0 5px rgba(51, 255, 51, 0.7)'
+          boxShadow: '0 0 3px rgba(79, 255, 192, 0.7)'
         }}
       />
     </h2>
