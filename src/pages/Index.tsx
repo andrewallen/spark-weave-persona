@@ -58,13 +58,15 @@ const Index = () => {
       <section id="home" className="min-h-screen flex items-center relative scanlines">
         <div className="container mx-auto px-6 pt-32">
           <div className="max-w-3xl">
-            
+            <p className="text-mint mb-4 animate-fade-in">Hi there! I'm</p>
             <h1 className="text-gradient mb-4 animate-slide-down">Andrew Allen</h1>
             <TypewriterText />
-            
-            <div style={{
+            <p className="text-xl mb-8 max-w-xl animate-slide-down" style={{
+            animationDelay: '200ms'
+          }}>I shape the future of digital experiences at the crossroads of design, technology, and creativity — blending strategic insight, innovation, and leadership to push what’s possible.</p>
+            <div className="flex flex-wrap gap-4 animate-slide-down" style={{
             animationDelay: '300ms'
-          }} className="flex flex-wrap gap-4 animate-slide-down py-[20px]">
+          }}>
               <a href="#projects" className="px-6 py-3 bg-mint text-navy font-medium rounded-md hover:bg-coral transition-colors duration-300 interactive">
                 View My Work
               </a>
