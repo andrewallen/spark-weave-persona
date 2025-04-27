@@ -46,7 +46,7 @@
   }
 
   body {
-    @apply bg-navy text-lightSlate;
+    @apply bg-navy text-[#33FF33] opacity-90;
     font-feature-settings: "rlig" 1, "calt" 1;
     font-family: 'Space Mono', monospace;
     position: relative;
@@ -80,7 +80,7 @@
   }
   
   h1, h2, h3, h4, h5, h6 {
-    @apply text-[#33FF33] font-bold tracking-tighter font-jetbrains;
+    @apply text-[#33FF33] font-bold tracking-tighter font-mono;
     text-shadow: 0 0 8px rgba(51, 255, 51, 0.7);
   }
   
@@ -92,25 +92,30 @@
     @apply text-3xl sm:text-4xl md:text-5xl;
   }
   
-  p {
-    @apply text-slate;
+  p, span, a, button, input, textarea {
+    @apply text-[#33FF33] font-mono;
+    text-shadow: 0 0 4px rgba(51, 255, 51, 0.4);
+  }
+
+  input, textarea {
+    @apply bg-navy/50 border-[#33FF33]/30 focus:border-[#33FF33] focus:ring-[#33FF33]/20;
   }
 }
 
 @layer components {
   .section-title {
-    @apply text-2xl md:text-3xl font-bold mb-6 relative inline-block;
+    @apply text-2xl md:text-3xl font-bold mb-6 relative inline-block font-mono;
     &:after {
       content: "";
-      @apply absolute -bottom-2 left-0 w-1/2 h-1 bg-mint;
+      @apply absolute -bottom-2 left-0 w-1/2 h-1 bg-[#33FF33];
     }
   }
   
   .nav-item {
-    @apply relative overflow-hidden px-4 py-2 text-lightSlate hover:text-mint transition-all duration-300;
+    @apply relative overflow-hidden px-4 py-2 text-[#33FF33] hover:text-[#33FF33] transition-all duration-300;
     &:after {
       content: "";
-      @apply absolute bottom-0 left-0 w-0 h-0.5 bg-mint transition-all duration-300;
+      @apply absolute bottom-0 left-0 w-0 h-0.5 bg-[#33FF33] transition-all duration-300;
     }
     &:hover:after {
       @apply w-full;
