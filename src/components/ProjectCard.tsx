@@ -14,12 +14,12 @@ const ProjectCard = ({ title, description, technologies, imageUrl, link }: Proje
   
   return (
     <div 
-      className="group relative rounded-lg overflow-hidden bg-navy/50 border border-[#33FF33]/20 h-[400px] interactive"
+      className="group relative rounded-lg overflow-hidden bg-secondary h-[400px] interactive"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       <div 
-        className="absolute inset-0 bg-cover bg-center transition-all duration-700 group-hover:scale-110 group-hover:blur-sm opacity-30"
+        className="absolute inset-0 bg-cover bg-center transition-all duration-700 group-hover:scale-110 group-hover:blur-sm"
         style={{ backgroundImage: `url(${imageUrl})` }}
       />
       
@@ -31,7 +31,7 @@ const ProjectCard = ({ title, description, technologies, imageUrl, link }: Proje
             isHovered ? 'translate-y-0' : 'translate-y-12'
           }`}
         >
-          <h3 className="text-2xl font-bold mb-2 text-[#33FF33] font-mono">{title}</h3>
+          <h3 className="text-2xl font-bold mb-2 text-mint">{title}</h3>
           
           <p 
             className={`mb-4 text-sm transition-opacity duration-500 ${
@@ -49,7 +49,7 @@ const ProjectCard = ({ title, description, technologies, imageUrl, link }: Proje
             {technologies.map((tech, index) => (
               <span 
                 key={index} 
-                className="text-xs px-2 py-1 bg-navy/60 rounded border border-[#33FF33]/20 text-[#33FF33]"
+                className="text-xs px-2 py-1 bg-navy/60 rounded text-lightSlate"
               >
                 {tech}
               </span>
@@ -60,11 +60,11 @@ const ProjectCard = ({ title, description, technologies, imageUrl, link }: Proje
             href={link} 
             target="_blank" 
             rel="noopener noreferrer" 
-            className={`inline-block px-4 py-2 bg-[#33FF33]/10 text-[#33FF33] font-medium rounded border border-[#33FF33]/30 hover:bg-[#33FF33]/20 hover:border-[#33FF33] transition-all duration-300 transform ${
+            className={`inline-block px-4 py-2 bg-mint text-navy font-medium rounded hover:bg-coral transition-all duration-300 transform ${
               isHovered ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
             }`}
           >
-            > View Project_
+            View Project
           </a>
         </div>
       </div>
