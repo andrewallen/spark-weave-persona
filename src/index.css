@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -49,10 +48,12 @@
   body {
     @apply bg-navy text-lightSlate cursor-none;
     font-feature-settings: "rlig" 1, "calt" 1;
+    font-family: 'Space Mono', monospace;
   }
   
   h1, h2, h3, h4, h5, h6 {
-    @apply text-white font-bold tracking-tighter;
+    @apply text-mint font-bold tracking-tighter;
+    text-shadow: 0 0 5px rgba(79, 255, 192, 0.5);
   }
   
   h1 {
@@ -94,8 +95,33 @@
   }
   
   .text-gradient {
-    @apply bg-gradient-to-r from-mint to-coral text-transparent bg-clip-text animate-gradient-shift;
-    background-size: 200% 200%;
+    @apply bg-gradient-to-r from-mint to-mint text-transparent bg-clip-text;
+    text-shadow: 0 0 10px rgba(79, 255, 192, 0.3);
+  }
+  
+  .crt {
+    @apply overflow-hidden;
+    animation: flicker 0.15s infinite;
+  }
+  
+  .scanlines {
+    position: relative;
+  }
+  
+  .scanlines::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(79, 255, 192, 0.05) 0.5%,
+      transparent 1%
+    );
+    pointer-events: none;
   }
 }
 
@@ -106,6 +132,30 @@
   
   .blend-difference {
     mix-blend-mode: difference;
+  }
+}
+
+@keyframes flicker {
+  0% {
+    opacity: 0.97;
+  }
+  3% {
+    opacity: 0.95;
+  }
+  8% {
+    opacity: 0.98;
+  }
+  10% {
+    opacity: 0.96;
+  }
+  20% {
+    opacity: 0.99;
+  }
+  25% {
+    opacity: 0.95;
+  }
+  30% {
+    opacity: 1;
   }
 }
 

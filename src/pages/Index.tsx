@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Cursor from '../components/Cursor';
 import ParticleGrid from '../components/ParticleGrid';
 import NavMenu from '../components/NavMenu';
@@ -9,8 +9,7 @@ import TypewriterText from '../components/TypewriterText';
 const Index = () => {
   const [isVisible, setIsVisible] = useState({
     about: false,
-    projects: false,
-    skills: false
+    projects: false
   });
 
   useEffect(() => {
@@ -54,13 +53,14 @@ const Index = () => {
     link: '#'
   }];
 
-  return <>
+  return (
+    <div className="crt">
       <Cursor />
       <ParticleGrid />
       <NavMenu />
       
       {/* Hero Section */}
-      <section id="home" className="min-h-screen flex items-center relative">
+      <section id="home" className="min-h-screen flex items-center relative scanlines">
         <div className="container mx-auto px-6 pt-32">
           <div className="max-w-3xl">
             <p className="text-mint mb-4 animate-fade-in">Hi there! I'm</p>
@@ -93,7 +93,7 @@ const Index = () => {
       </section>
       
       {/* About Section */}
-      <section id="about" className={`py-24 relative ${isVisible.about ? 'animate-fade-in' : 'opacity-0'}`}>
+      <section id="about" className={`py-24 relative scanlines ${isVisible.about ? 'animate-fade-in' : 'opacity-0'}`}>
         <div className="container mx-auto px-6">
           <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div>
@@ -131,30 +131,12 @@ const Index = () => {
         </div>
       </section>
       
-      {/* Skills Section */}
-      <section id="skills" className={`py-24 relative bg-secondary ${isVisible.skills ? 'animate-fade-in' : 'opacity-0'}`}>
-        <div className="container mx-auto px-6">
-          <h2 className="section-title">Skills & Expertise</h2>
-          
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 mt-12">
-            {['JavaScript', 'TypeScript', 'React', 'Node.js', 'HTML/CSS', 'Figma', 'UI/UX Design', 'ThreeJS', 'WebGL', 'TailwindCSS', 'GraphQL', 'Git'].map((skill, index) => <div key={skill} className="bg-navy/70 rounded-lg p-6 hover:bg-mint/10 transition-colors duration-300 backdrop-blur-sm" style={{
-            animationDelay: `${index * 50}ms`
-          }}>
-                <div className="text-center">
-                  <div className="inline-block mb-2 text-mint text-2xl font-mono">{index + 1 < 10 ? `0${index + 1}` : index + 1}</div>
-                  <h3 className="text-lg font-medium">{skill}</h3>
-                </div>
-              </div>)}
-          </div>
-        </div>
-      </section>
-      
       {/* Projects Section */}
-      <section id="projects" className={`py-24 relative ${isVisible.projects ? 'animate-fade-in' : 'opacity-0'}`}>
+      <section id="projects" className={`py-24 relative scanlines ${isVisible.projects ? 'animate-fade-in' : 'opacity-0'}`}>
         <div className="container mx-auto px-6">
-          <h2 className="section-title mb-12">Featured Projects</h2>
+          <h2 className="section-title">Featured Projects</h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
             {projects.map((project, index) => <ProjectCard key={index} title={project.title} description={project.description} technologies={project.technologies} imageUrl={project.imageUrl} link={project.link} />)}
           </div>
           
@@ -173,19 +155,20 @@ const Index = () => {
       <ContactSection />
       
       {/* Footer */}
-      <footer className="py-8 border-t border-white/10">
+      <footer className="py-8 border-t border-mint/10 scanlines">
         <div className="container mx-auto px-6">
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-slate">
-              © {new Date().getFullYear()} Jane Doe. All rights reserved.
+            <p className="text-mint/70">
+              © {new Date().getFullYear()} Andrew Allen. All rights reserved.
             </p>
-            <p className="text-slate mt-2 md:mt-0">
-              Designed and built with <span className="text-coral">❤</span> by Jane Doe
+            <p className="text-mint/70 mt-2 md:mt-0">
+              Built with <span className="text-coral">❤</span> by Andrew Allen
             </p>
           </div>
         </div>
       </footer>
-    </>;
+    </div>
+  );
 };
 
 export default Index;
