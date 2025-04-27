@@ -64,7 +64,7 @@ const ProjectCard = ({ title, description, technologies, imageUrl, link }: Proje
               isHovered ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
             }`}
           >
-            > View Project_
+            {'>'}View Project_
           </a>
         </div>
       </div>
