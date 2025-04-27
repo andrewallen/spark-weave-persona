@@ -68,7 +68,7 @@ export default {
           ring: 'hsl(var(--sidebar-ring))'
         },
         navy: '#0A1419',
-        mint: '#4FFFC0',
+        mint: '#33FF33', // Updated to classic phosphor green
         coral: '#FF6B5C',
         slate: '#8892B0',
         lightSlate: '#C3E3D4',
@@ -119,6 +119,30 @@ export default {
           '0%': { backgroundPosition: '0% 50%' },
           '50%': { backgroundPosition: '100% 50%' },
           '100%': { backgroundPosition: '0% 50%' }
+        },
+        'glitch': {
+          '0%, 100%': { transform: 'translateX(0)' },
+          '20%': { transform: 'translateX(-2px)' },
+          '40%': { transform: 'translateX(2px)' },
+          '60%': { transform: 'translateX(-2px)' },
+          '80%': { transform: 'translateX(2px)' }
+        },
+        'horizontal-shift': {
+          '0%, 100%': { transform: 'translateX(0)' },
+          '10%': { transform: 'translateX(-5px)' },
+          '30%': { transform: 'translateX(5px)' },
+          '50%': { transform: 'translateX(-5px)' },
+          '70%': { transform: 'translateX(5px)' },
+          '90%': { transform: 'translateX(-5px)' }
+        },
+        'crt-on': {
+          '0%': { transform: 'scale(1, 0.6)', filter: 'brightness(0) saturate(0)' },
+          '10%': { transform: 'scale(1, 0.8)', filter: 'brightness(0.3) saturate(0.5)' },
+          '30%': { transform: 'scale(1, 1.2)', filter: 'brightness(0.7) saturate(0.8)' },
+          '50%': { transform: 'scale(1, 0.9)', filter: 'brightness(1) saturate(1.3)' },
+          '60%': { transform: 'scale(1, 1.1)', filter: 'brightness(0.8) saturate(1.2)' },
+          '80%': { transform: 'scale(1, 0.98)', filter: 'brightness(1) saturate(1.1)' },
+          '100%': { transform: 'scale(1, 1)', filter: 'brightness(1) saturate(1)' }
         }
       },
       animation: {
@@ -131,7 +155,10 @@ export default {
         'pulse-slow': 'pulse-slow 3s ease-in-out infinite',
         'float': 'float 6s ease-in-out infinite',
         'spin-slow': 'spin-slow 12s linear infinite',
-        'gradient-shift': 'gradient-shift 15s ease infinite'
+        'gradient-shift': 'gradient-shift 15s ease infinite',
+        'glitch': 'glitch 0.5s ease-in-out infinite',
+        'horizontal-shift': 'horizontal-shift 5s ease-in-out',
+        'crt-on': 'crt-on 1s ease-out'
       },
       fontFamily: {
         sans: ['Satoshi', 'sans-serif'],
