@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -34,11 +33,6 @@
     --ring: 164 100% 65%;
 
     --radius: 0.5rem;
-    
-    /* Retro screen variables */
-    --retro-green: #33ff33;
-    --retro-green-glow: rgba(51, 255, 51, 0.7);
-    --retro-bg: #0A1419;
   }
 }
 
@@ -55,31 +49,11 @@
     @apply bg-navy text-lightSlate cursor-none;
     font-feature-settings: "rlig" 1, "calt" 1;
     font-family: 'Space Mono', monospace;
-    position: relative;
-    overflow-x: hidden;
-  }
-  
-  /* Add subtle screen curvature effect */
-  body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(
-      circle at center,
-      transparent 50%,
-      rgba(0, 0, 0, 0.15) 100%
-    );
-    pointer-events: none;
-    z-index: 100;
   }
   
   h1, h2, h3, h4, h5, h6 {
-    @apply font-bold tracking-tighter font-jetbrains;
-    color: var(--retro-green);
-    text-shadow: 0 0 5px var(--retro-green-glow), 0 0 10px rgba(51, 255, 51, 0.3);
+    @apply text-mint font-bold tracking-tighter font-jetbrains;
+    text-shadow: 0 0 5px rgba(79, 255, 192, 0.5);
   }
   
   h1 {
@@ -93,19 +67,6 @@
   p {
     @apply text-slate;
   }
-  
-  button, a {
-    position: relative;
-    z-index: 10;
-  }
-  
-  /* Fix for interactive elements */
-  a, button, .interactive {
-    cursor: none !important;
-    position: relative;
-    z-index: 5;
-    pointer-events: auto;
-  }
 }
 
 @layer components {
@@ -113,9 +74,7 @@
     @apply text-2xl md:text-3xl font-bold mb-6 relative inline-block;
     &:after {
       content: "";
-      @apply absolute -bottom-2 left-0 w-1/2 h-1;
-      background-color: var(--retro-green);
-      box-shadow: 0 0 5px var(--retro-green-glow);
+      @apply absolute -bottom-2 left-0 w-1/2 h-1 bg-mint;
     }
   }
   
@@ -124,7 +83,6 @@
     &:after {
       content: "";
       @apply absolute bottom-0 left-0 w-0 h-0.5 bg-mint transition-all duration-300;
-      box-shadow: 0 0 5px var(--retro-green-glow);
     }
     &:hover:after {
       @apply w-full;
@@ -132,19 +90,22 @@
   }
   
   .grid-bg {
-    background-image: radial-gradient(circle at 1px 1px, rgba(51, 255, 51, 0.15) 1px, transparent 0);
+    background-image: radial-gradient(circle at 1px 1px, rgba(79, 255, 192, 0.15) 1px, transparent 0);
     background-size: 40px 40px;
   }
   
   .text-gradient {
     @apply bg-gradient-to-r from-mint to-mint text-transparent bg-clip-text;
-    text-shadow: 0 0 10px rgba(51, 255, 51, 0.5);
+    text-shadow: 0 0 10px rgba(79, 255, 192, 0.3);
   }
   
-  /* Enhanced scanlines effect */
+  .crt {
+    @apply overflow-hidden;
+    animation: flicker 0.15s infinite;
+  }
+  
   .scanlines {
     position: relative;
-    overflow: hidden;
   }
   
   .scanlines::before {
@@ -157,36 +118,11 @@
     background: repeating-linear-gradient(
       to bottom,
       transparent 0%,
-      rgba(51, 255, 51, 0.03) 0.5%,
+      rgba(79, 255, 192, 0.03) 0.5%,
       transparent 1%
     );
     pointer-events: none;
     animation: scanline-move 8s linear infinite;
-    z-index: 2;
-  }
-  
-  /* CRT flicker effect - optimized */
-  .crt {
-    @apply overflow-hidden;
-    animation: flicker 0.15s infinite;
-    position: relative;
-  }
-
-  /* Enhanced retro text */  
-  .retro-text {
-    position: relative;
-    display: inline-block;
-    transform-style: preserve-3d;
-  }
-  
-  .ghost-text {
-    transform: translateZ(-1px) translateY(1px) translateX(1px);
-    filter: blur(1px);
-  }
-  
-  /* Glitch effect */
-  .glitch {
-    animation: textGlitch 0.1s ease-in-out;
   }
 }
 
@@ -200,56 +136,62 @@
   }
 }
 
-/* Optimized keyframes for better performance */
 @keyframes flicker {
-  0% { opacity: 0.98; }
-  5% { opacity: 0.96; }
-  10% { opacity: 0.97; }
-  15% { opacity: 0.95; }
-  20% { opacity: 0.98; }
-  25% { opacity: 0.96; }
-  30% { opacity: 0.99; }
-  100% { opacity: 1; }
+  0% {
+    opacity: 0.97;
+  }
+  3% {
+    opacity: 0.95;
+  }
+  8% {
+    opacity: 0.98;
+  }
+  10% {
+    opacity: 0.96;
+  }
+  20% {
+    opacity: 0.99;
+  }
+  25% {
+    opacity: 0.95;
+  }
+  30% {
+    opacity: 1;
+  }
 }
 
 @keyframes scanline-move {
-  from { transform: translateY(0); }
-  to { transform: translateY(100%); }
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(100%);
+  }
 }
 
-@keyframes textGlitch {
-  0% { transform: translateX(0); }
-  25% { transform: translateX(2px); }
-  50% { transform: translateX(-1px); }
-  75% { transform: translateX(1px); }
-  100% { transform: translateX(0); }
-}
-
-/* Custom cursor styles - made more reliable */
+/* Custom cursor styles */
 .cursor-outer {
   width: 40px;
   height: 40px;
-  border: 1px solid rgba(51, 255, 51, 0.5);
+  border: 1px solid rgba(79, 255, 192, 0.5);
   border-radius: 50%;
   position: fixed;
   pointer-events: none;
   z-index: 9999;
   transform: translate(-50%, -50%);
-  transition: width 0.3s ease-out, height 0.3s ease-out, border-color 0.3s ease-out, opacity 0.2s ease;
-  mix-blend-mode: screen;
+  transition: width 0.3s ease-out, height 0.3s ease-out, border-color 0.3s ease-out;
 }
 
 .cursor-inner {
   width: 8px;
   height: 8px;
-  background-color: var(--retro-green);
+  background-color: #4FFFC0;
   border-radius: 50%;
   position: fixed;
   pointer-events: none;
   z-index: 9999;
   transform: translate(-50%, -50%);
-  transition: width 0.3s ease-out, height 0.3s ease-out, background-color 0.3s ease-out, opacity 0.2s ease;
-  box-shadow: 0 0 5px var(--retro-green-glow);
+  transition: width 0.3s ease-out, height 0.3s ease-out, background-color 0.3s ease-out;
 }
 
 .link-hover .cursor-outer {
@@ -262,27 +204,4 @@
   width: 12px;
   height: 12px;
   background-color: #FF6B5C;
-}
-
-/* Screenburn effect for static text */
-@keyframes screenburn {
-  0%, 100% {
-    opacity: 0.02;
-  }
-  50% {
-    opacity: 0.04;
-  }
-}
-
-.screenburn::after {
-  content: attr(data-text);
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0.03;
-  filter: blur(1px) brightness(2);
-  pointer-events: none;
-  animation: screenburn 5s infinite;
 }

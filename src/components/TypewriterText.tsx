@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
+import { TextCursor } from 'lucide-react';
 
 const titles = [
   "Creative Developer",
@@ -17,7 +18,6 @@ export const TypewriterText = () => {
   const [titleIndex, setTitleIndex] = useState(0);
   const [isTyping, setIsTyping] = useState(true);
   const [showCursor, setShowCursor] = useState(true);
-  const [glitch, setGlitch] = useState(false);
 
   useEffect(() => {
     const currentTitle = titles[titleIndex];
@@ -26,12 +26,6 @@ export const TypewriterText = () => {
       if (text.length < currentTitle.length) {
         const timeout = setTimeout(() => {
           setText(currentTitle.slice(0, text.length + 1));
-          
-          // Random glitch effect (rare)
-          if (Math.random() > 0.95) {
-            setGlitch(true);
-            setTimeout(() => setGlitch(false), 50);
-          }
         }, 100);
         return () => clearTimeout(timeout);
       } else {
@@ -62,34 +56,17 @@ export const TypewriterText = () => {
   }, []);
 
   return (
-    <h2 
-      className={`text-4xl font-mono mb-4 animate-slide-down opacity-75 flex items-center gap-1 font-jetbrains retro-text ${glitch ? 'glitch' : ''}`} 
-      style={{
-        animationDelay: '100ms',
-        textShadow: '0 0 8px rgba(51, 255, 51, 0.8), 0 0 12px rgba(51, 255, 51, 0.5)',
-        color: '#33ff33',
-        minHeight: '1.5em',
-        lineHeight: '1.2',
-        position: 'relative',
-        letterSpacing: '0.5px'
-      }}
-    >
-      <span className="relative inline-block">
-        {text}
-        <span 
-          className="ghost-text absolute top-0 left-0 opacity-20"
-          style={{ filter: 'blur(1px)' }}
-        >
-          {text}
-        </span>
-      </span>
+    <h2 className="text-4xl font-mono text-[#4FFFC0] mb-4 animate-slide-down opacity-75 flex items-center gap-1 font-jetbrains" style={{
+      animationDelay: '100ms',
+      textShadow: '0 0 5px rgba(79, 255, 192, 0.5)',
+      minHeight: '1.5em',
+      lineHeight: '1.2'
+    }}>
+      {text}
       <span 
-        className={`inline-block w-1 h-8 ${showCursor ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`}
+        className={`inline-block w-1 h-8 bg-[#4FFFC0] ${showCursor ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`}
         style={{
-          backgroundColor: '#33ff33',
-          boxShadow: '0 0 6px rgba(51, 255, 51, 0.9)',
-          transform: glitch ? 'translateY(2px)' : 'none',
-          transition: 'transform 0.05s ease'
+          boxShadow: '0 0 3px rgba(79, 255, 192, 0.7)'
         }}
       />
     </h2>
