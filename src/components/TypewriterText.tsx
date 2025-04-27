@@ -1,6 +1,5 @@
 
 import React, { useState, useEffect } from 'react';
-import { TextCursor } from 'lucide-react';
 
 const titles = [
   "Creative Developer",
@@ -18,6 +17,7 @@ export const TypewriterText = () => {
   const [titleIndex, setTitleIndex] = useState(0);
   const [isTyping, setIsTyping] = useState(true);
   const [showCursor, setShowCursor] = useState(true);
+  const [glitchText, setGlitchText] = useState(false);
 
   useEffect(() => {
     const currentTitle = titles[titleIndex];
@@ -26,6 +26,11 @@ export const TypewriterText = () => {
       if (text.length < currentTitle.length) {
         const timeout = setTimeout(() => {
           setText(currentTitle.slice(0, text.length + 1));
+          // Random glitch effect
+          if (Math.random() < 0.1) {
+            setGlitchText(true);
+            setTimeout(() => setGlitchText(false), 50);
+          }
         }, 100);
         return () => clearTimeout(timeout);
       } else {
@@ -56,20 +61,29 @@ export const TypewriterText = () => {
   }, []);
 
   return (
-    <h2 className="text-4xl font-mono text-[#4FFFC0] mb-4 animate-slide-down opacity-75 flex items-center gap-1 font-jetbrains" style={{
-      animationDelay: '100ms',
-      textShadow: '0 0 5px rgba(79, 255, 192, 0.5)',
-      minHeight: '1.5em',
-      lineHeight: '1.2'
-    }}>
-      {text}
-      <span 
-        className={`inline-block w-1 h-8 bg-[#4FFFC0] ${showCursor ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`}
+    <>
+      <div className="screen-overlay" />
+      <h2 
+        className={`text-4xl font-mono text-[#33FF33] mb-4 opacity-90 flex items-center gap-1 font-jetbrains text-glow ${
+          glitchText ? 'animate-[glitch_0.05s_ease]' : ''
+        }`}
         style={{
-          boxShadow: '0 0 3px rgba(79, 255, 192, 0.7)'
+          minHeight: '1.5em',
+          lineHeight: '1.2',
+          filter: glitchText ? 'blur(0.5px)' : 'none',
         }}
-      />
-    </h2>
+      >
+        {text}
+        <span 
+          className={`inline-block w-1 h-8 bg-[#33FF33] ${
+            showCursor ? 'opacity-100' : 'opacity-0'
+          } transition-opacity duration-300`}
+          style={{
+            boxShadow: '0 0 4px #33FF33, 0 0 8px #33FF33'
+          }}
+        />
+      </h2>
+    </>
   );
 };
 
