@@ -5,13 +5,11 @@ import NavMenu from '../components/NavMenu';
 import ProjectCard from '../components/ProjectCard';
 import ContactSection from '../components/ContactSection';
 import TypewriterText from '../components/TypewriterText';
-
 const Index = () => {
   const [isVisible, setIsVisible] = useState({
     about: false,
     projects: false
   });
-
   useEffect(() => {
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
@@ -32,7 +30,6 @@ const Index = () => {
       sections.forEach(section => observer.unobserve(section));
     };
   }, []);
-
   const projects = [{
     title: 'AI Powered Analytics Platform',
     description: 'A machine learning platform that provides insights and predictions for business data.',
@@ -52,9 +49,7 @@ const Index = () => {
     imageUrl: 'https://images.unsplash.com/photo-1607359390930-93e1a8a61896',
     link: '#'
   }];
-
-  return (
-    <div className="crt">
+  return <div className="crt">
       <Cursor />
       <ParticleGrid />
       <NavMenu />
@@ -67,14 +62,11 @@ const Index = () => {
             <h1 className="text-gradient mb-4 animate-slide-down">Andrew Allen</h1>
             <TypewriterText />
             <p className="text-xl mb-8 max-w-xl animate-slide-down" style={{
-              animationDelay: '200ms'
-            }}>
-              I create exceptional digital experiences that live at the 
-              intersection of design, technology, and creativity.
-            </p>
+            animationDelay: '200ms'
+          }}>I shape the future of digital experiences at the crossroads of design, technology, and creativity — blending strategic insight, innovation, and leadership to push what’s possible.</p>
             <div className="flex flex-wrap gap-4 animate-slide-down" style={{
-              animationDelay: '300ms'
-            }}>
+            animationDelay: '300ms'
+          }}>
               <a href="#projects" className="px-6 py-3 bg-mint text-navy font-medium rounded-md hover:bg-coral transition-colors duration-300 interactive">
                 View My Work
               </a>
@@ -167,8 +159,6 @@ const Index = () => {
           </div>
         </div>
       </footer>
-    </div>
-  );
+    </div>;
 };
-
 export default Index;
