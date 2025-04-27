@@ -62,9 +62,9 @@ const Index = () => {
             <h1 className="text-gradient mb-4 animate-slide-down">Andrew Allen</h1>
             <TypewriterText />
             
-            <div className="flex flex-wrap gap-4 animate-slide-down" style={{
+            <div style={{
             animationDelay: '300ms'
-          }}>
+          }} className="flex flex-wrap gap-4 animate-slide-down py-[20px]">
               <a href="#projects" className="px-6 py-3 bg-mint text-navy font-medium rounded-md hover:bg-coral transition-colors duration-300 interactive">
                 View My Work
               </a>

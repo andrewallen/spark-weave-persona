@@ -1,16 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
-const titles = [
-  "Creative Developer",
-  "Digital Innovator", 
-  "Tech Strategist",
-  "Problem Solver",
-  "UX Engineer",
-  "Adventurer",
-  "Amateur Athlete",
-  "Lifelong Learner"
-];
-
+const titles = ["Creative Developer", "Digital Innovator", "Tech Strategist", "Problem Solver", "UX Engineer", "Adventurer", "Amateur Athlete", "Lifelong Learner"];
 export const TypewriterText = () => {
   const [text, setText] = useState('');
   const [titleIndex, setTitleIndex] = useState(0);
@@ -18,17 +7,14 @@ export const TypewriterText = () => {
   const [showCursor, setShowCursor] = useState(true);
   const [glitchText, setGlitchText] = useState(false);
   const [isBooting, setIsBooting] = useState(true);
-
   useEffect(() => {
     const bootTimeout = setTimeout(() => {
       setIsBooting(false);
     }, 2500);
     return () => clearTimeout(bootTimeout);
   }, []);
-
   useEffect(() => {
     const currentTitle = titles[titleIndex];
-    
     if (isTyping) {
       if (text.length < currentTitle.length) {
         const timeout = setTimeout(() => {
@@ -59,41 +45,27 @@ export const TypewriterText = () => {
       }
     }
   }, [text, titleIndex, isTyping]);
-
   useEffect(() => {
     const interval = setInterval(() => {
       setShowCursor(prev => !prev);
     }, 530);
     return () => clearInterval(interval);
   }, []);
-
-  return (
-    <>
+  return <>
       <div className="screen-overlay" />
-      <div className="monitor-frame">
+      <div className="monitor-frame py-0">
         <div className={`monitor-content ${isBooting ? 'booting' : ''}`}>
           <div className="scan-flicker" />
-          <h2 
-            className={`text-4xl font-mono text-[#33FF33] mb-4 opacity-90 flex items-center gap-1 font-jetbrains text-glow typing-text ${
-              glitchText ? 'glitch' : ''
-            }`}
-            style={{
-              minHeight: '1.5em',
-              lineHeight: '1.2',
-              filter: glitchText ? 'blur(0.5px)' : 'none',
-            }}
-          >
+          <h2 className={`text-4xl font-mono text-[#33FF33] mb-4 opacity-90 flex items-center gap-1 font-jetbrains text-glow typing-text ${glitchText ? 'glitch' : ''}`} style={{
+          minHeight: '1.5em',
+          lineHeight: '1.2',
+          filter: glitchText ? 'blur(0.5px)' : 'none'
+        }}>
             {isBooting ? '>' : text}
-            <span 
-              className={`inline-block w-1 h-8 bg-[#33FF33] ${
-                showCursor ? 'opacity-100' : 'opacity-0'
-              } transition-opacity duration-300 cursor-glow`}
-            />
+            <span className={`inline-block w-1 h-8 bg-[#33FF33] ${showCursor ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300 cursor-glow`} />
           </h2>
         </div>
       </div>
-    </>
-  );
+    </>;
 };
-
 export default TypewriterText;
