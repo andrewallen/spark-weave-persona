@@ -68,31 +68,23 @@ export const TypewriterText = () => {
   }, []);
 
   return (
-    <>
-      <div className="screen-overlay" />
-      <div className="monitor-frame">
-        <div className={`monitor-content ${isBooting ? 'booting' : ''}`}>
-          <div className="scan-flicker" />
-          <h2 
-            className={`text-4xl font-mono text-[#33FF33] mb-4 opacity-90 flex items-center gap-1 font-jetbrains text-glow typing-text ${
-              glitchText ? 'glitch' : ''
-            }`}
-            style={{
-              minHeight: '1.5em',
-              lineHeight: '1.2',
-              filter: glitchText ? 'blur(0.5px)' : 'none',
-            }}
-          >
-            {isBooting ? '>' : text}
-            <span 
-              className={`inline-block w-1 h-8 bg-[#33FF33] ${
-                showCursor ? 'opacity-100' : 'opacity-0'
-              } transition-opacity duration-300 cursor-glow`}
-            />
-          </h2>
-        </div>
-      </div>
-    </>
+    <h2 
+      className={`text-4xl font-mono text-[#33FF33] mb-4 opacity-90 flex items-center gap-1 font-jetbrains text-glow typing-text ${
+        glitchText ? 'glitch' : ''
+      }`}
+      style={{
+        minHeight: '1.5em',
+        lineHeight: '1.2',
+        filter: glitchText ? 'blur(0.5px)' : 'none',
+      }}
+    >
+      {isBooting ? '>' : text}
+      <span 
+        className={`inline-block w-1 h-8 bg-[#33FF33] ${
+          showCursor ? 'opacity-100' : 'opacity-0'
+        } transition-opacity duration-300 cursor-glow`}
+      />
+    </h2>
   );
 };
 
