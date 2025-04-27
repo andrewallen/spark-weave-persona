@@ -48,7 +48,6 @@ export const TypewriterText = () => {
     }
   }, [text, titleIndex, isTyping]);
 
-  // Blinking cursor effect
   useEffect(() => {
     const interval = setInterval(() => {
       setShowCursor(prev => !prev);
@@ -57,12 +56,13 @@ export const TypewriterText = () => {
   }, []);
 
   return (
-    <h2 className="text-4xl font-bold text-lightSlate mb-6 animate-slide-down opacity-75 flex items-center gap-1" style={{
-      animationDelay: '100ms'
+    <h2 className="text-4xl font-mono text-[#4FFFC0] mb-6 animate-slide-down opacity-75 flex items-center gap-1 font-jetbrains" style={{
+      animationDelay: '100ms',
+      textShadow: '0 0 5px rgba(79, 255, 192, 0.5)'
     }}>
       {text}
       <TextCursor 
-        className={`inline h-8 w-8 text-mint ${showCursor ? 'opacity-100' : 'opacity-0'} transition-opacity duration-100`}
+        className={`inline h-8 w-8 text-[#4FFFC0] ${showCursor ? 'opacity-100' : 'opacity-0'} transition-opacity duration-100`}
       />
     </h2>
   );

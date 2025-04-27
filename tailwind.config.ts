@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -134,7 +135,8 @@ export default {
       },
       fontFamily: {
         sans: ['Satoshi', 'sans-serif'],
-        mono: ['JetBrains Mono', 'monospace'],
+        mono: ['Space Mono', 'monospace'],
+        jetbrains: ['JetBrains Mono', 'monospace'],
       },
     }
   },
