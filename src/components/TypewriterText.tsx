@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { TextCursor } from 'lucide-react';
 
@@ -55,11 +56,11 @@ export const TypewriterText = () => {
   }, []);
 
   return (
-    <h2 className="text-4xl font-mono text-[#4FFFC0] mb-6 animate-slide-down opacity-75 flex items-center gap-1 font-jetbrains" style={{
+    <h2 className="text-4xl font-mono text-[#4FFFC0] mb-4 animate-slide-down opacity-75 flex items-center gap-1 font-jetbrains" style={{
       animationDelay: '100ms',
       textShadow: '0 0 5px rgba(79, 255, 192, 0.5)',
-      minHeight: '2.5em',
-      lineHeight: '1'
+      minHeight: '1.5em',
+      lineHeight: '1.2'
     }}>
       {text}
       <span 
