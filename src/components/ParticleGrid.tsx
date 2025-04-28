@@ -134,15 +134,15 @@ const ParticleGrid = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 w-full h-full -z-50"
+      className="fixed inset-0"
       style={{
         position: 'fixed',
         top: 0,
         left: 0,
         width: '100vw',
         height: '100vh',
-        pointerEvents: 'none',
-        zIndex: -1
+        pointerEvents: 'auto',
+        zIndex: 1
       }}
     />
   );
