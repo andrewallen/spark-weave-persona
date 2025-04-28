@@ -6,7 +6,7 @@ import TypewriterText from '../components/TypewriterText';
 
 const Index = () => {
   return (
-    <div className="crt">
+    <div className="crt relative">
       <Cursor />
       
       {/* Hero Section */}
