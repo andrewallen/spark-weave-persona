@@ -18,7 +18,7 @@ const Index = () => {
             <TypewriterText />
             <p className="text-xl mb-8 max-w-xl animate-slide-down" style={{
             animationDelay: '200ms'
-          }}>I shape the future of digital experiences at the crossroads of design, technology, and creativity — blending strategic insight, innovation, and leadership to push what's possible.</p>
+          }}>I decode emerging signals and translate them into actionable opportunities — investing in the technologies, companies, and leaders who are building the infrastructure for tomorrow's digital-first world.</p>
             <div className="flex flex-wrap gap-4 animate-slide-down" style={{
             animationDelay: '300ms'
           }}>

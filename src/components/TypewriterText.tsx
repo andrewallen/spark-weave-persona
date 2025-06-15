@@ -1,14 +1,15 @@
+
 import React, { useState, useEffect } from 'react';
 
 const titles = [
-  "Creative Developer",
-  "Digital Innovator", 
-  "Tech Strategist",
-  "Problem Solver",
-  "UX Engineer",
-  "Adventurer",
-  "Amateur Athlete",
-  "Lifelong Learner"
+  "Strategic Investor",
+  "Digital Futurist",
+  "Tech Entrepreneur", 
+  "Thought Leader",
+  "Innovation Catalyst",
+  "Venture Builder",
+  "Ecosystem Architect",
+  "Signal Decoder"
 ];
 
 export const TypewriterText = () => {
