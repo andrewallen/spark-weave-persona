@@ -141,8 +141,8 @@ const ParticleGrid = () => {
         left: 0,
         width: '100vw',
         height: '100vh',
-        pointerEvents: 'auto',
-        zIndex: 1
+        pointerEvents: 'none',
+        zIndex: -1
       }}
     />
   );
